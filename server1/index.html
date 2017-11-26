@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Radio Traffic Data</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" crossorigin="anonymous"></script>
+    <style>
+      .output{
+        margin-top:10px;
+      }
+    </style>
+    <script>
+      $(document).ready(function(){
+        //get data
+        getData();
+
+        //check for updates ever 5 seconds
+        setInterval(getData,5000);
+      });
+
+      function getData(){
+        $.get('data.dat',function(data){
+          var data = data.split("\n");
+          $("#cards").html("");
+          data.forEach(function(d){
+              var d = d.split('|');
+              var trucks = d[0];
+              var address = d[1];
+              var notes = d[2];
+              var time = d[3];
+            if(address !== undefined){
+              $("#cards").append('<div class="col-sm-12 output">'+
+                '<div class="card">'+
+                  '<div class="card-header">'+ trucks +'</div>'+
+                  '<div class="card-block">'+
+                    '<h4 class="card-title">'+address+'</h4>'+
+                    '<p class="card-text">'+notes+'</p>'+
+                    '<p class="card-text">'+time+'</p>'+
+                    '</div>'+
+                  '</div>'+
+                '</div><br><br><br>');
+            }
+          });
+        });
+      }
+    </script>
+  </head>
+  <body>
+
+    <div id="main" class="container">
+      <div id="cards" class="row">
+
+      </div>
+    </div>
+
+  </body>
+</html>
+
