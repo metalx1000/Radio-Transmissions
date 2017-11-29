@@ -1,7 +1,5 @@
 #!/bin/bash
 
-clear
-
 msg="cad"
 
 function startTransmission(){
@@ -22,8 +20,8 @@ function enterInfo(){
   time="$(date)"
   echo "Transmitting..."
   echo "$trucks|$address|$notes|$time"
-  echo "$trucks|$address|$notes|$time||================================" >> "$msg"
-  echo "=============================" 
+  echo "$trucks|$address|$notes|$time" >> "$msg"
+  echo "============================="
 }
 
 #start transmission

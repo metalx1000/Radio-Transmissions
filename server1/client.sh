@@ -1,4 +1,5 @@
 #!/bin/bash
-
+clear
 echo "Lisenting for transmissions..."
-minimodem --rx 110 >> data.dat
+echo "================================"
+minimodem --rx 110 2>/dev/null |tee -a data.dat|sed 's/|/\n/g'
