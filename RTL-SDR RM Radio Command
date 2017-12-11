@@ -1,0 +1,2 @@
+#An example of listening to FM Radio from the shell using an RTL-SDR Dongle
+rtl_fm -f 89.8M -s 170k -A fast -r 33k -l 0 -E deemp| play -r 32k -t raw -e s -b 16 -c 1 -V1 -
